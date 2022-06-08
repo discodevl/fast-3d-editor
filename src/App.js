@@ -3,7 +3,7 @@ import ModelViewer from "./components/ModelViewer";
 
 function App() {
   return (
-    <div className="App">
+    <div style={{display: 'flex'}}>
       <MainSideBar />
       <ModelViewer/>
     </div>
