@@ -1,0 +1,11 @@
+.container{
+    height: 100vh;
+    width: 4vw;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+}
+
+.btn {
+    margin: 10px;
+}
