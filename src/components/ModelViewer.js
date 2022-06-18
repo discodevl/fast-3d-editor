@@ -1,31 +1,62 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useSelector } from "react-redux";
 import styles from "./ModelViewer.module.css";
 
 function ModelViewer() {
+  const inputRef = useRef();
 
-  const exposure = useSelector(state => state.model.exposure);
-  const shadowIntensity = useSelector(state => state.model.shadow_intensity);
-  const shadowSoftness = useSelector(state => state.model.shadow_softness);
+  const [src, setSrc] = useState("");
 
-  const hideSideBar = useSelector(state => state.config.hide_side_bar);
-  const bgColor = useSelector(state => state.config.background_color);
+  const exposure = useSelector((state) => state.model.exposure);
+  const shadowIntensity = useSelector((state) => state.model.shadow_intensity);
+  const shadowSoftness = useSelector((state) => state.model.shadow_softness);
+
+  const hideSideBar = useSelector((state) => state.config.hide_side_bar);
+  const bgColor = useSelector((state) => state.config.background_color);
+
+  function handleBtnUpload(e) {
+    e.preventDefault();
+    inputRef.current.click();
+  }
+
+  function handleFile(e) {
+    const modelUpload = e.target.files[0];
+    setSrc(URL.createObjectURL(modelUpload));
+  }
 
   useEffect(() => {
-    if(hideSideBar) {
-      document.getElementById('mv').style.width = '94vw';
+    if (hideSideBar) {
+      document.getElementById("mv").style.width = "94vw";
     } else {
-      document.getElementById('mv').style.width = '76vw';
+      document.getElementById("mv").style.width = "76vw";
     }
-
-  },[hideSideBar]);
+  }, [hideSideBar]);
 
   return (
-    <div className={hideSideBar ? styles.containerLarge : styles.container} style={{backgroundColor: bgColor}}>
+    <div
+      className={hideSideBar ? styles.containerLarge : styles.container}
+      style={{ backgroundColor: bgColor }}
+    >
+      {!src && (
+        <div>
+          <input
+            ref={inputRef}
+            type="file"
+            accept=".glb"
+            onChange={handleFile}
+            style={{ display: "none" }}
+          />
+          <button className={styles.buttonUpload} onClick={handleBtnUpload}>Upload</button>
+        </div>
+      )}
       <model-viewer
-      id="mv"
-        alt="Neil Armstrong's Spacesuit from the Smithsonian Digitization Programs Office and National Air and Space Museum"
-        src="https://modelviewer.dev/shared-assets/models/NeilArmstrong.glb" camera-controls exposure={exposure} shadow-intensity={shadowIntensity} shadow-softness={shadowSoftness}
+        id="mv"
+        alt="model viewer with fast 3d editor"
+        src={src}
+        camera-controls
+        exposure={exposure}
+        shadow-intensity={shadowIntensity}
+        shadow-softness={shadowSoftness}
       ></model-viewer>
     </div>
   );

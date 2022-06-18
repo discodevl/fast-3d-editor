@@ -10,3 +10,19 @@
     left: 6vw; 
     height: 100vh;
 }
+
+.buttonUpload {
+    position: absolute;
+    z-index: 1;
+    top:30vh;
+    left: 50%;
+    width: 10%;
+    padding: 8px;
+    background-color: #aaaaaa;
+    border-radius: 2px;
+    border: 0;
+}
+
+.buttonUpload:hover{
+    box-shadow: 2px 2px 8px;
+}
