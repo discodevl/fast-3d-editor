@@ -15,20 +15,16 @@ function Metalness() {
   }
 
   useEffect(() => {
-    dispatch(
-      modelActions.setMetalness(
-        materialSelected.pbrMetallicRoughness.metallicFactor
-      )
-    );
-    console.log(materialSelected.pbrMetallicRoughness.metallicFactor)
+    document.getElementById("range-metal").value = materialSelected.pbrMetallicRoughness.metallicFactor;
+    console.log(materialSelected.pbrMetallicRoughness.metallicFactor);
   }, []);
 
   return (
     <div>
       <label>Metalness</label>
       <input
+      id="range-metal"
         type="range"
-        value={metalness}
         max="1.5"
         min="-1.5"
         step="0.1"
