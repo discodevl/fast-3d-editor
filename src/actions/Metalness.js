@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { modelActions } from "../redux/model/model";
+import styles from "./Metalness.module.css";
 
 function Metalness() {
   const dispatch = useDispatch();
@@ -10,26 +11,38 @@ function Metalness() {
 
   const metalness = useSelector((state) => state.model.metalness);
 
+  const [defaultValue, setDefaultValue] = useState();
+
   function metalnessHandler(e) {
     materialSelected.pbrMetallicRoughness.setMetallicFactor(e.target.value);
   }
 
+  function revertValue() {
+    document.getElementById("range-metal").value = defaultValue;
+    materialSelected.pbrMetallicRoughness.setMetallicFactor(defaultValue);
+  }
+
   useEffect(() => {
-    document.getElementById("range-metal").value = materialSelected.pbrMetallicRoughness.metallicFactor;
-    console.log(materialSelected.pbrMetallicRoughness.metallicFactor);
+    document.getElementById("range-metal").value =
+      materialSelected.pbrMetallicRoughness.metallicFactor;
+    setDefaultValue(materialSelected.pbrMetallicRoughness.metallicFactor);
   }, []);
 
   return (
-    <div>
+    <div className={styles.container}>
       <label>Metalness</label>
-      <input
-      id="range-metal"
-        type="range"
-        max="1.5"
-        min="-1.5"
-        step="0.1"
-        onChange={metalnessHandler}
-      />
+      <div>
+        <input
+          id="range-metal"
+          type="range"
+          max="1.5"
+          min="-1.5"
+          step="0.1"
+          onChange={metalnessHandler}
+        />
+        <button onClick={revertValue}>Rev</button>
+      </div>
+      
     </div>
   );
 }

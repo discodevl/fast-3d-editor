@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { modelActions } from "../redux/model/model";
+import styles from "./Roughness.module.css";
 
 function Roughness() {
   const dispatch = useDispatch();
@@ -10,26 +11,37 @@ function Roughness() {
 
   const roughness = useSelector((state) => state.model.roughness);
 
+  const [defaultValue, setDefaultValue] = useState();
+
   function roughnessHandler(e) {
     materialSelected.pbrMetallicRoughness.setRoughnessFactor(e.target.value);
   }
 
+  function revertValue() {
+    document.getElementById("range-roughness").value = defaultValue;
+    materialSelected.pbrMetallicRoughness.setRoughnessFactor(defaultValue);
+  }
+
   useEffect(() => {
-    document.getElementById("range-roughness").value = materialSelected.pbrMetallicRoughness.roughnessFactor;
-    console.log(materialSelected.pbrMetallicRoughness.roughnessFactor);
+    document.getElementById("range-roughness").value =
+      materialSelected.pbrMetallicRoughness.roughnessFactor;
+    setDefaultValue(materialSelected.pbrMetallicRoughness.roughnessFactor);
   }, []);
 
   return (
-    <div>
+    <div className={styles.container}>
       <label>Roughness</label>
-      <input
-        id="range-roughness"
-        type="range"
-        max="1.5"
-        min="-1.5"
-        step="0.1"
-        onChange={roughnessHandler}
-      />
+      <div>
+        <input
+          id="range-roughness"
+          type="range"
+          max="1.5"
+          min="-1.5"
+          step="0.1"
+          onChange={roughnessHandler}
+        />
+        <button onClick={revertValue}>Rev</button>
+      </div>
     </div>
   );
 }
