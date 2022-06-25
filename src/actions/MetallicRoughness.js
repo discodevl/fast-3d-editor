@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import Metalness from "./Metalness";
-import Roughness from "./Roughness";
+import Metalness from "./MetallicRoughness/Metalness";
+import Roughness from "./MetallicRoughness/Roughness";
 import { useSelector } from "react-redux";
 import styles from "./MetallicRoughness.module.css";
 
 function MetallicRoughness() {
   const [initialTexture, setInitialTexture] = useState();
+  const [actualTexture, setActualTexture] = useState();
 
   const modelViewer = document.querySelector("model-viewer");
   const materialIndex = useSelector((state) => state.model.material_index);
@@ -14,8 +15,25 @@ function MetallicRoughness() {
     document.getElementById("input-mt").click();
   }
 
-  function handleFile(e) {
+  async function handleFile(e) {
+    const material = modelViewer.model.materials[materialIndex];
+
     const newTexture = e.target.files[0];
+    const imgTexture = URL.createObjectURL(newTexture)
+    setActualTexture(imgTexture);
+    const texture = await modelViewer.createTexture(imgTexture);
+    material.pbrMetallicRoughness.metallicRoughnessTexture.setTexture(texture);
+  }
+
+  async function revertTexture() {
+    const thumb = await initialTexture.source.createThumbnail(
+      48,
+      48
+    );
+    setActualTexture(thumb);
+    const material = modelViewer.model.materials[materialIndex];
+
+    material.pbrMetallicRoughness.metallicRoughnessTexture.setTexture(initialTexture);
   }
 
   useEffect(() => {
@@ -27,7 +45,8 @@ function MetallicRoughness() {
           48,
           48
         );
-      setInitialTexture(thumb);
+        setInitialTexture(material.pbrMetallicRoughness.metallicRoughnessTexture.texture);
+      setActualTexture(thumb);
     }
 
     getThumb();
@@ -41,9 +60,10 @@ function MetallicRoughness() {
       <div>
         <img
           className={styles.img}
-          src={initialTexture}
+          src={actualTexture}
           onClick={toggleInput}
         />
+        <button onClick={revertTexture}>rev</button>
       </div>
       <input
         id="input-mt"

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { modelActions } from "../redux/model/model";
-import styles from "./Roughness.module.css";
+import revert from "../../assets/x-circle.svg";
+import styles from "./MetallicRoughness.module.css";
 
 function Roughness() {
   const dispatch = useDispatch();
@@ -40,7 +40,7 @@ function Roughness() {
           step="0.1"
           onChange={roughnessHandler}
         />
-        <button onClick={revertValue}>Rev</button>
+        <img className={styles.rev} alt="revert roughness" src={revert} onClick={revertValue} />
       </div>
     </div>
   );

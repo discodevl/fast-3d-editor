@@ -10,14 +10,20 @@ function BaseColor() {
   const [color, setColor] = useState();
   const [defaultColor, setDefaultColor] = useState();
   const [initialTexture, setInitialTexture] = useState();
+  const [actualTexture, setActualTexture] = useState();
 
   function toggleInput() {
     document.getElementById("input-bc").click();
   }
 
-  function handleFile(e) {
-    const newTexture = e.target.files[0];
+  async function handleFile(e) {
+    const material = modelViewer.model.materials[materialIndex];
 
+    const newTexture = e.target.files[0];
+    const imgTexture = URL.createObjectURL(newTexture);
+    setActualTexture(imgTexture);
+    const texture = await modelViewer.createTexture(imgTexture);
+    material.pbrMetallicRoughness.baseColorTexture.setTexture(texture);
   }
 
   function colorHandler(color) {
@@ -26,9 +32,9 @@ function BaseColor() {
 
     const rgb = hexToRgb(color);
     const rgbArr = rgb
-    .split(",")
-    .map((numberString) => parseFloat(numberString));
-    
+      .split(",")
+      .map((numberString) => parseFloat(numberString));
+
     const newColor = [rgbArr[0] / 255, rgbArr[1] / 255, rgbArr[2] / 255];
     material.pbrMetallicRoughness.setBaseColorFactor(newColor);
   }
@@ -36,10 +42,25 @@ function BaseColor() {
   function restoreColor() {
     const material = modelViewer.model.materials[materialIndex];
     material.pbrMetallicRoughness.setBaseColorFactor(defaultColor);
-    const defaultColorHex = rgbToHex(defaultColor[0],defaultColor[2],defaultColor[1])
+    const defaultColorHex = rgbToHex(
+      defaultColor[0],
+      defaultColor[2],
+      defaultColor[1]
+    );
     setColor(defaultColorHex);
   }
-  
+
+  async function revertTexture() {
+    const thumb = await initialTexture.source.createThumbnail(
+      48,
+      48
+    );
+    setActualTexture(thumb);
+    const material = modelViewer.model.materials[materialIndex];
+
+    material.pbrMetallicRoughness.baseColorTexture.setTexture(initialTexture);
+  }
+
   useEffect(() => {
     const material = modelViewer.model.materials[materialIndex];
 
@@ -49,7 +70,8 @@ function BaseColor() {
           48,
           48
         );
-      setInitialTexture(thumb);
+      setInitialTexture(material.pbrMetallicRoughness.baseColorTexture.texture);
+      setActualTexture(thumb);
     }
 
     const rgba = material.pbrMetallicRoughness.baseColorFactor;
@@ -80,7 +102,8 @@ function BaseColor() {
     <div>
       <label>Base Color Texture</label>
       <div>
-        <img className={styles.img} src={initialTexture} onClick={toggleInput}/>
+        <img className={styles.img} src={actualTexture} onClick={toggleInput} />
+        <button onClick={revertTexture}>rev</button>
       </div>
 
       <input
@@ -90,10 +113,17 @@ function BaseColor() {
         accept="images/*"
         onChange={handleFile}
       />
+
       <label>Base Color Factor</label>
-      <div>
-        <HexColorPicker color={color} onChange={(color) => colorHandler(color)} />
-        <HexColorInput color={color} onChange={(color) => colorHandler(color)} />
+      <div style={{ display: "none" }}>
+        <HexColorPicker
+          color={color}
+          onChange={(color) => colorHandler(color)}
+        />
+        <HexColorInput
+          color={color}
+          onChange={(color) => colorHandler(color)}
+        />
         <button onClick={restoreColor}>Rev</button>
       </div>
     </div>

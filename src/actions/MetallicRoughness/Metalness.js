@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { modelActions } from "../redux/model/model";
-import styles from "./Metalness.module.css";
+import revert from "../../assets/x-circle.svg";
+import styles from "./MetallicRoughness.module.css";
 
 function Metalness() {
   const dispatch = useDispatch();
@@ -40,7 +40,7 @@ function Metalness() {
           step="0.1"
           onChange={metalnessHandler}
         />
-        <button onClick={revertValue}>Rev</button>
+        <img className={styles.rev} alt="revert metalness" src={revert} onClick={revertValue} />
       </div>
       
     </div>
