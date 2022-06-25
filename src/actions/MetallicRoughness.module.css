@@ -1,0 +1,10 @@
+.container {
+  margin-top: 10px;
+}
+
+.img {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  border: 1px solid black;
+}

@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { modelActions } from "../redux/model/model";
 import BaseColor from "./BaseColor";
+import MetallicRoughness from "./MetallicRoughness";
 import Metalness from "./Metalness";
 import Roughness from "./Roughness";
 
@@ -23,8 +24,7 @@ function TextureSelector() {
           return <option key={i} value={i}>{mat.name}</option>;
         })}
       </select>
-      <Metalness />
-      <Roughness />
+      <MetallicRoughness />
       <BaseColor />
     </div>
   );
