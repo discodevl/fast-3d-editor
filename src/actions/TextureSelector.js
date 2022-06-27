@@ -12,6 +12,8 @@ function TextureSelector() {
 
   const { materials } = modelViewer.model;
 
+  console.log(materials)
+
   function materialHandler(e) {
     dispatch(modelActions.setMaterialIndex(e.target.value));
   }

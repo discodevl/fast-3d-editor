@@ -1,14 +1,23 @@
 .btn {
-    width: 60px;
-    height: 60px;
-    border: 1px solid black;
-    border-radius: 12px;
-    background-color: none;
+  width: 60px;
+  height: 60px;
+  border: 1px solid black;
+  border-radius: 12px;
+  background-color: none;
 }
 
 .img {
-    width: 48px;
-    height: 48px;
-    border-radius: 10px;
-    border: 1px solid grey;
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  border: 1px solid grey;
+}
+
+.small {
+  width: 120px;
+  height: 80px;
+}
+
+.inputHex {
+  width: 110px;
 }

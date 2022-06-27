@@ -11,6 +11,7 @@ function BaseColor() {
   const [defaultColor, setDefaultColor] = useState();
   const [initialTexture, setInitialTexture] = useState();
   const [actualTexture, setActualTexture] = useState();
+  const [openColor, setOpenColor] = useState(true);
 
   function toggleInput() {
     document.getElementById("input-bc").click();
@@ -51,10 +52,7 @@ function BaseColor() {
   }
 
   async function revertTexture() {
-    const thumb = await initialTexture.source.createThumbnail(
-      48,
-      48
-    );
+    const thumb = await initialTexture.source.createThumbnail(48, 48);
     setActualTexture(thumb);
     const material = modelViewer.model.materials[materialIndex];
 
@@ -115,12 +113,15 @@ function BaseColor() {
       />
 
       <label>Base Color Factor</label>
-      <div style={{ display: "none" }}>
+      <button onClick={() => setOpenColor(!openColor)}>Toggle color</button>
+      <div style={openColor ? { display: "" } : { display: "none" }}>
         <HexColorPicker
+          className={styles.small}
           color={color}
           onChange={(color) => colorHandler(color)}
         />
         <HexColorInput
+          className={styles.inputHex}
           color={color}
           onChange={(color) => colorHandler(color)}
         />
