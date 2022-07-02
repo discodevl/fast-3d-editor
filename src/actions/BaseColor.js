@@ -11,7 +11,7 @@ function BaseColor() {
   const [defaultColor, setDefaultColor] = useState();
   const [initialTexture, setInitialTexture] = useState();
   const [actualTexture, setActualTexture] = useState();
-  const [openColor, setOpenColor] = useState(true);
+  const [openColor, setOpenColor] = useState(false);
 
   function toggleInput() {
     document.getElementById("input-bc").click();
@@ -100,7 +100,7 @@ function BaseColor() {
     <div>
       <label>Base Color Texture</label>
       <div>
-        <img className={styles.img} src={actualTexture} onClick={toggleInput} />
+        <img className={styles.img} src={actualTexture || ""} onClick={toggleInput} />
         <button onClick={revertTexture}>rev</button>
       </div>
 

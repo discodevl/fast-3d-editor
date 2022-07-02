@@ -56,8 +56,7 @@ function MetallicRoughness() {
   return (
     <div className={styles.container}>
       <label>Metallic Roughness Texture</label>
-      <Metalness />
-      <Roughness />
+      
       <div>
         <img className={styles.img} src={actualTexture} onClick={toggleInput} />
         <button onClick={revertTexture}>rev</button>
@@ -69,6 +68,8 @@ function MetallicRoughness() {
         accept="images/*"
         onChange={handleFile}
       />
+      <Metalness />
+      <Roughness />
     </div>
   );
 }

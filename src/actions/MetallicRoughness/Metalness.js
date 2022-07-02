@@ -43,8 +43,6 @@ function Metalness() {
     }
   }, [materialIndex]);
 
-  console.log(defaultValue)
-
   return (
     <div className={styles.container}>
       <label>Metalness</label>
