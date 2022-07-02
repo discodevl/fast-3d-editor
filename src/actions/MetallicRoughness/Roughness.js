@@ -11,22 +11,41 @@ function Roughness() {
 
   const roughness = useSelector((state) => state.model.roughness);
 
-  const [defaultValue, setDefaultValue] = useState();
+  const [defaultValue, setDefaultValue] = useState([]);
 
   function roughnessHandler(e) {
     materialSelected.pbrMetallicRoughness.setRoughnessFactor(e.target.value);
   }
 
   function revertValue() {
-    document.getElementById("range-roughness").value = defaultValue;
-    materialSelected.pbrMetallicRoughness.setRoughnessFactor(defaultValue);
+    document.getElementById("range-roughness").value =
+      defaultValue[materialIndex];
+    materialSelected.pbrMetallicRoughness.setRoughnessFactor(
+      defaultValue[materialIndex]
+    );
   }
 
   useEffect(() => {
+    const listDefault = [];
     document.getElementById("range-roughness").value =
       materialSelected.pbrMetallicRoughness.roughnessFactor;
-    setDefaultValue(materialSelected.pbrMetallicRoughness.roughnessFactor);
+    listDefault[materialIndex] =
+      materialSelected.pbrMetallicRoughness.roughnessFactor;
+    setDefaultValue([...listDefault]);
   }, []);
+
+  useEffect(() => {
+    const listDefault = [...defaultValue];
+    document.getElementById("range-roughness").value =
+      materialSelected.pbrMetallicRoughness.roughnessFactor;
+    if (!defaultValue[materialIndex]) {
+      listDefault[materialIndex] =
+        materialSelected.pbrMetallicRoughness.roughnessFactor;
+      setDefaultValue([...listDefault]);
+    }
+  }, [materialIndex]);
+
+  console.log(defaultValue)
 
   return (
     <div className={styles.container}>
@@ -40,7 +59,12 @@ function Roughness() {
           step="0.1"
           onChange={roughnessHandler}
         />
-        <img className={styles.rev} alt="revert roughness" src={revert} onClick={revertValue} />
+        <img
+          className={styles.rev}
+          alt="revert roughness"
+          src={revert}
+          onClick={revertValue}
+        />
       </div>
     </div>
   );

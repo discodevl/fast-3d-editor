@@ -11,22 +11,39 @@ function Metalness() {
 
   const metalness = useSelector((state) => state.model.metalness);
 
-  const [defaultValue, setDefaultValue] = useState();
+  const [defaultValue, setDefaultValue] = useState([]);
 
   function metalnessHandler(e) {
     materialSelected.pbrMetallicRoughness.setMetallicFactor(e.target.value);
   }
 
   function revertValue() {
-    document.getElementById("range-metal").value = defaultValue;
-    materialSelected.pbrMetallicRoughness.setMetallicFactor(defaultValue);
+    document.getElementById("range-metal").value = defaultValue[materialIndex];
+    materialSelected.pbrMetallicRoughness.setMetallicFactor(defaultValue[materialIndex]);
   }
 
   useEffect(() => {
+    const listDefault = [];
     document.getElementById("range-metal").value =
       materialSelected.pbrMetallicRoughness.metallicFactor;
-    setDefaultValue(materialSelected.pbrMetallicRoughness.metallicFactor);
+    listDefault[materialIndex] =
+      materialSelected.pbrMetallicRoughness.metallicFactor;
+    setDefaultValue([...listDefault]);
   }, []);
+
+  useEffect(() => {
+
+    const listDefault = [...defaultValue];
+    document.getElementById("range-metal").value =
+      materialSelected.pbrMetallicRoughness.metallicFactor;
+    if (!defaultValue[materialIndex]) {
+      listDefault[materialIndex] =
+        materialSelected.pbrMetallicRoughness.metallicFactor;
+      setDefaultValue([...listDefault]);
+    }
+  }, [materialIndex]);
+
+  console.log(defaultValue)
 
   return (
     <div className={styles.container}>
@@ -40,9 +57,13 @@ function Metalness() {
           step="0.1"
           onChange={metalnessHandler}
         />
-        <img className={styles.rev} alt="revert metalness" src={revert} onClick={revertValue} />
+        <img
+          className={styles.rev}
+          alt="revert metalness"
+          src={revert}
+          onClick={revertValue}
+        />
       </div>
-      
     </div>
   );
 }

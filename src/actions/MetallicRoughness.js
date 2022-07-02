@@ -28,7 +28,7 @@ function MetallicRoughness() {
   }
 
   async function revertTexture() {
-    const thumb = await initialTexture.source.createThumbnail(48, 48);
+    const thumb = await initialTexture?.source?.createThumbnail(48, 48);
     setActualTexture(thumb);
     // const material = modelViewer.model.materials[materialIndex];
 
@@ -41,7 +41,7 @@ function MetallicRoughness() {
     async function getThumb() {
       
       const thumb =
-        await material.pbrMetallicRoughness.metallicRoughnessTexture.texture.source.createThumbnail(
+        await material?.pbrMetallicRoughness?.metallicRoughnessTexture?.texture?.source?.createThumbnail(
           48,
           48
         );

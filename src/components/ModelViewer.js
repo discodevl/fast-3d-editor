@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useSelector } from "react-redux";
-import shoe from "../assets/MaterialsVariantsShoe.glb";
+import glb from "../assets/alpha-blend-litmus.glb";
 import styles from "./ModelViewer.module.css";
 
 function ModelViewer() {
@@ -49,7 +49,7 @@ function ModelViewer() {
           />
           <button className={styles.buttonUpload} onClick={handleBtnUpload}>Upload</button>
           <p className={styles.paragraph}>or</p>
-          <button className={styles.buttonStart} onClick={() => setSrc(shoe)}>start</button>
+          <button className={styles.buttonStart} onClick={() => setSrc(glb)}>start</button>
         </div>
       )}
       <model-viewer
