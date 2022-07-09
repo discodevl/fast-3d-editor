@@ -3,5 +3,6 @@
     left: 4vw;
     width: 20vw;
     height: 99vh;
-    border: 1px solid black;
+    margin-left: 25px;
+    /* border: 1px solid black; */
 }
