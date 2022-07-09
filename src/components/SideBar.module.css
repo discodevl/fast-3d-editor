@@ -1,8 +1,11 @@
 .container {
-    position: absolute;
-    left: 4vw;
-    width: 20vw;
-    height: 99vh;
-    margin-left: 25px;
-    /* border: 1px solid black; */
+  position: absolute;
+  left: 4vw;
+  width: 20vw;
+  height: 100vh;
+  background-color: #636383;
+}
+
+.componentsWrapper{
+    margin: 8px;
 }
