@@ -4,6 +4,8 @@ import { modelActions } from "../redux/model/model";
 import BaseColor from "./BaseColor";
 import Emissive from "./Emissive";
 import MetallicRoughness from "./MetallicRoughness";
+import Normal from "./Normal";
+import Occlusion from "./Occlusion";
 
 function TextureSelector() {
   const dispatch = useDispatch();
@@ -26,6 +28,8 @@ function TextureSelector() {
       <MetallicRoughness />
       <BaseColor />
       <Emissive />
+      <Occlusion />
+      <Normal />
     </div>
   );
 }

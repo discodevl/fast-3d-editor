@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { HexColorPicker, HexColorInput } from "react-colorful";
+import NotImg from "../assets/alert-triangle.svg";
 import styles from "./BaseColor.module.css";
 
 function BaseColor() {
@@ -12,6 +13,8 @@ function BaseColor() {
   const [initialTexture, setInitialTexture] = useState();
   const [actualTexture, setActualTexture] = useState();
   const [openColor, setOpenColor] = useState(false);
+
+  const material = modelViewer.model.materials[materialIndex];
 
   function toggleInput() {
     document.getElementById("input-bc").click();
@@ -80,6 +83,22 @@ function BaseColor() {
     getThumb();
   }, []);
 
+  useEffect(() => {
+    async function getThumb() {
+      
+      const thumb =
+        await material?.pbrMetallicRoughness?.baseColorTexture?.texture?.source?.createThumbnail(
+          48,
+          48
+        );
+      setInitialTexture(
+        material.pbrMetallicRoughness.baseColorTexture.texture
+      );
+      setActualTexture(thumb);
+    }
+    getThumb();
+  }, [materialIndex]);
+
   function rgbToHex(r, g, b) {
     return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
   }
@@ -100,7 +119,7 @@ function BaseColor() {
     <div>
       <label>Base Color Texture</label>
       <div>
-        <img className={styles.img} src={actualTexture || ""} onClick={toggleInput} />
+        <img className={styles.img} src={actualTexture || NotImg} onClick={toggleInput} />
         <button onClick={revertTexture}>rev</button>
       </div>
 

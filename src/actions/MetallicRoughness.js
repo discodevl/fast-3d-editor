@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Metalness from "./MetallicRoughness/Metalness";
 import Roughness from "./MetallicRoughness/Roughness";
 import { useSelector } from "react-redux";
+import NotImg from "../assets/alert-triangle.svg";
 import styles from "./MetallicRoughness.module.css";
 
 function MetallicRoughness() {
@@ -58,7 +59,7 @@ function MetallicRoughness() {
       <label>Metallic Roughness Texture</label>
       
       <div>
-        <img className={styles.img} src={actualTexture} onClick={toggleInput} />
+        <img className={styles.img} src={actualTexture || NotImg} onClick={toggleInput} />
         <button onClick={revertTexture}>rev</button>
       </div>
       <input
