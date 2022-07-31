@@ -27,16 +27,16 @@ function ModelViewer() {
 
   useEffect(() => {
     if (hideSideBar) {
-      document.getElementById("mv").style.width = "94vw";
+      // document.getElementById("mv").style.width = "94vw";
     } else {
-      document.getElementById("mv").style.width = "76vw";
+      // document.getElementById("mv").style.width = "76vw";
     }
   }, [hideSideBar]);
 
   return (
     <div className={styles.container}>
-      {/* {true && (
-        <div>
+      {!src ?  (
+        <div styles={{width: '100%'}}>
           <input
             ref={inputRef}
             type="file"
@@ -48,16 +48,16 @@ function ModelViewer() {
           <p className={styles.paragraph}>or</p>
           <button className={styles.buttonStart} onClick={() => setSrc(glb)}>start</button>
         </div>
-      )} */}
-      <model-viewer
-        id="mv"
-        alt="model viewer with fast 3d editor"
-        src={glb}
-        camera-controls
-        exposure={exposure}
-        shadow-intensity={shadowIntensity}
-        shadow-softness={shadowSoftness}
-      ></model-viewer>
+      ) : <model-viewer
+      id="mv"
+      alt="model viewer with fast 3d editor"
+      src={src}
+      camera-controls
+      exposure={exposure}
+      shadow-intensity={shadowIntensity}
+      shadow-softness={shadowSoftness}
+    ></model-viewer>}
+      
     </div>
   );
 }
