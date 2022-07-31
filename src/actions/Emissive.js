@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { HexColorPicker, HexColorInput } from "react-colorful";
-import styles from "./Emissive.module.css";
+import ColorPickerCloseable from "../components/ColorPickerCloseable";
 import TextureSelector from "../components/TextureSelector";
 
 function Emissive() {
@@ -28,6 +27,11 @@ function Emissive() {
     material.emissiveTexture.setTexture(texture);
   }
 
+  function getColor(color) {
+    setColor(color);
+    colorHandler(color);
+  }
+
   function colorHandler(color) {
     const material = modelViewer.model.materials[materialIndex];
     setColor(color);
@@ -43,13 +47,14 @@ function Emissive() {
 
   function restoreColor() {
     const material = modelViewer.model.materials[materialIndex];
-    material.emissiveTexture.setEmissiveTexture(defaultColor);
     const defaultColorHex = rgbToHex(
       defaultColor[0],
       defaultColor[2],
       defaultColor[1]
-    );
-    setColor(defaultColorHex);
+      );
+      console.log(defaultColor)
+      setColor(defaultColorHex);
+      material.setEmissiveFactor(defaultColor);
   }
 
   async function revertTexture() {
@@ -59,6 +64,15 @@ function Emissive() {
 
     material.emissiveTexture.setTexture(initialTexture);
   }
+
+  useEffect(() => {
+    const material = modelViewer.model.materials[materialIndex];
+
+    const rgba = material.emissiveFactor;
+    const hex = rgbToHex(rgba[0], rgba[1], rgba[2]);
+    setColor(hex);
+    setDefaultColor(rgba);
+  }, []);
 
   useEffect(() => {
     async function getThumb() {
@@ -96,21 +110,7 @@ function Emissive() {
     <div>
       <TextureSelector id='t3' title="Emissive Texture" fileHandler={fileHandler} revertTexture={revertTexture} actualTexture={actualTexture}/>
 
-      <label>Emissive Factor</label>
-      <button onClick={() => setOpenColor(!openColor)}>Toggle color</button>
-      <div style={openColor ? { display: "" } : { display: "none" }}>
-        <HexColorPicker
-          className={styles.small}
-          color={color}
-          onChange={(color) => colorHandler(color)}
-        />
-        <HexColorInput
-          className={styles.inputHex}
-          color={color}
-          onChange={(color) => colorHandler(color)}
-        />
-        <button onClick={restoreColor}>Rev</button>
-      </div>
+      <ColorPickerCloseable title="Emissive Factor" onSelectColor={getColor} revertColor={restoreColor} />
     </div>
   );
 }

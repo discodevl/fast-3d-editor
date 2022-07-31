@@ -12,7 +12,6 @@ function ModelViewer({isModelLoaded}) {
   const shadowIntensity = useSelector((state) => state.model.shadow_intensity);
   const shadowSoftness = useSelector((state) => state.model.shadow_softness);
 
-  const hideSideBar = useSelector((state) => state.config.hide_side_bar);
   const bgColor = useSelector((state) => state.config.background_color);
 
   function handleBtnUpload(e) {

@@ -4,6 +4,7 @@
   width: 21%;
   height: 100%;
   background-color: #3e3e51;
+  overflow-y: auto;
 }
 
 .componentsWrapper {

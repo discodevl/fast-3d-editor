@@ -1,4 +1,5 @@
 import React from "react";
+import styles from './Export.module.css';
 
 function Export() {
   let modelViewer = document.querySelector("model-viewer");
@@ -13,9 +14,17 @@ function Export() {
     link.click();
   }
 
+  function discardHandler() {
+    //to fix
+    const mv = document.querySelector('model-viewer');
+    mv.src = "";
+  }
+
   return (
-    <div>
-      <button onClick={saveHandler}>Save</button>
+    <div className={styles.container}>
+      <button className={styles.btn} onClick={discardHandler}>Discard Model</button>
+
+      <button className={styles.btn} onClick={saveHandler}>Export</button>
     </div>
   );
 }

@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { HexColorPicker, HexColorInput } from "react-colorful";
 import styles from "./BaseColor.module.css";
 import TextureSelector from "../components/TextureSelector";
+import ColorPickerCloseable from "../components/ColorPickerCloseable";
 
 function BaseColor() {
   const modelViewer = document.querySelector("model-viewer");
@@ -12,7 +13,6 @@ function BaseColor() {
   const [defaultColor, setDefaultColor] = useState();
   const [initialTexture, setInitialTexture] = useState();
   const [actualTexture, setActualTexture] = useState();
-  const [openColor, setOpenColor] = useState(false);
 
   const material = modelViewer.model.materials[materialIndex];
 
@@ -24,6 +24,11 @@ function BaseColor() {
     setActualTexture(imgTexture);
     const texture = await modelViewer.createTexture(imgTexture);
     material.pbrMetallicRoughness.baseColorTexture.setTexture(texture);
+  }
+
+  function getColor(color) {
+    setColor(color);
+    colorHandler(color);
   }
 
   function colorHandler(color) {
@@ -111,25 +116,13 @@ function BaseColor() {
     }
   }
 
+  
+
   return (
     <div>
       <TextureSelector id="t2" title="Base Color Texture" fileHandler={fileHandler} revertTexture={revertTexture} actualTexture={actualTexture}/>
 
-      <label>Base Color Factor</label>
-      <button onClick={() => setOpenColor(!openColor)}>Toggle color</button>
-      <div style={openColor ? { display: "" } : { display: "none" }}>
-        <HexColorPicker
-          className={styles.small}
-          color={color}
-          onChange={(color) => colorHandler(color)}
-        />
-        <HexColorInput
-          className={styles.inputHex}
-          color={color}
-          onChange={(color) => colorHandler(color)}
-        />
-        <button onClick={restoreColor}>Rev</button>
-      </div>
+      <ColorPickerCloseable title="Base Color Factor" onSelectColor={getColor} revertColor={restoreColor}/>
     </div>
   );
 }
