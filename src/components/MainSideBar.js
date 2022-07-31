@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import SideBar from "./SideBar";
 import styles from "./MainSideBar.module.css";
 
-function MainSideBar() {
+function MainSideBar({onChangeTab}) {
   const [tab, setTab] = useState(0);
   const [hide, setHide] = useState(false);
 
@@ -13,7 +13,7 @@ function MainSideBar() {
       setTab(0);
     }
     setTab(value);
-    console.log(tab, hide);
+    onChangeTab(value);
   }
 
 
@@ -115,7 +115,7 @@ function MainSideBar() {
           </li>
         </ul>
       </nav>
-      <SideBar tab={tab} hide={hide} />
+      {/* <SideBar tab={tab} hide={hide} /> */}
     </>
   );
 }

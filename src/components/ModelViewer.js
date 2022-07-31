@@ -34,11 +34,8 @@ function ModelViewer() {
   }, [hideSideBar]);
 
   return (
-    <div
-      className={hideSideBar ? styles.containerLarge : styles.container}
-      style={{ backgroundColor: bgColor }}
-    >
-      {!src && (
+    <div className={styles.container}>
+      {/* {true && (
         <div>
           <input
             ref={inputRef}
@@ -51,11 +48,11 @@ function ModelViewer() {
           <p className={styles.paragraph}>or</p>
           <button className={styles.buttonStart} onClick={() => setSrc(glb)}>start</button>
         </div>
-      )}
+      )} */}
       <model-viewer
         id="mv"
         alt="model viewer with fast 3d editor"
-        src={src}
+        src={glb}
         camera-controls
         exposure={exposure}
         shadow-intensity={shadowIntensity}

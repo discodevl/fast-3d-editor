@@ -1,9 +1,9 @@
 .container {
-  height: 99vh;
-  width: 4vw;
-  border: 1px solid black;
   display: flex;
   flex-direction: column;
+  /* height: 99vh; */
+  width: 4vw;
+  border: 1px solid black;
 }
 
 .ico {

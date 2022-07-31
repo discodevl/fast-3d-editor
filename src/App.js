@@ -1,11 +1,21 @@
+import {useState} from 'react';
 import MainSideBar from "./components/MainSideBar";
 import ModelViewer from "./components/ModelViewer";
+import SideBar from "./components/SideBar";
 
 function App() {
+  const [tab, setTab] = useState();
+
+  function tabHandler(tab) {
+    setTab(tab);
+  }
+
+
   return (
-    <div style={{display: 'flex'}}>
-      <MainSideBar />
-      <ModelViewer/>
+    <div className="container-main">
+      <MainSideBar onChangeTab={tabHandler}/>
+      <SideBar tab={tab}/>
+      <ModelViewer />
     </div>
   );
 }

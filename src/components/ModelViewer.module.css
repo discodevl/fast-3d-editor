@@ -1,51 +1,36 @@
 .container {
-    position: absolute;
-    left: 24vw;
-    height: 100vh;
-    width: 75vw;
-}
-
-.containerLarge {
-    position: absolute;
-    left: 6vw; 
-    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
 }
 
 .buttonUpload {
-    position: absolute;
-    z-index: 1;
-    top:30vh;
-    left: 50%;
+    /* z-index: 1;
     width: 10%;
     padding: 8px;
     background-color: #aaaaaa;
     border-radius: 2px;
-    border: 0;
+    border: 0; */
 }
 
 .paragraph {
-    position: absolute;
-    z-index: 1;
-    top:33vh;
-    left: 54%;
+    /* z-index: 1; */
 }
 
 .buttonStart{
-    position: absolute;
-    z-index: 1;
-    top:38vh;
-    left: 50%;
+    /* z-index: 1;
     width: 10%;
     padding: 8px;
     background-color: #aaaaaa;
     border-radius: 2px;
-    border: 0;
+    border: 0; */
 }
 
 .buttonUpload:hover{
-    box-shadow: 2px 2px 8px;
+    /* box-shadow: 2px 2px 8px; */
 }
 
 .buttonStart:hover{
-    box-shadow: 2px 2px 8px;
+    /* box-shadow: 2px 2px 8px; */
 }
