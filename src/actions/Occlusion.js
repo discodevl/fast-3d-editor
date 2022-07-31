@@ -1,10 +1,9 @@
-import React,{useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import NotImg from "../assets/alert-triangle.svg";
-import styles from "./Occlusion.module.css";
+import TextureSelector from "../components/TextureSelector";
 
 function Occlusion() {
-    const modelViewer = document.querySelector("model-viewer");
+  const modelViewer = document.querySelector("model-viewer");
   const materialIndex = useSelector((state) => state.model.material_index);
 
   const [initialTexture, setInitialTexture] = useState();
@@ -12,11 +11,7 @@ function Occlusion() {
 
   const material = modelViewer.model.materials[materialIndex];
 
-  function toggleInput() {
-    document.getElementById("input-oc").click();
-  }
-
-  async function handleFile(e) {
+  async function fileHandler(e) {
     const material = modelViewer.model.materials[materialIndex];
 
     const newTexture = e.target.files[0];
@@ -36,15 +31,12 @@ function Occlusion() {
 
   useEffect(() => {
     async function getThumb() {
-      
       const thumb =
         await material?.occlusionTexture?.texture?.source?.createThumbnail(
           48,
           48
         );
-      setInitialTexture(
-        material.occlusionTexture.texture
-      );
+      setInitialTexture(material.occlusionTexture.texture);
       setActualTexture(thumb);
     }
     getThumb();
@@ -52,25 +44,9 @@ function Occlusion() {
 
   return (
     <div>
-        <label>Occlusion Texture</label>
-      <div>
-        <img
-          className={styles.img}
-          src={actualTexture || NotImg}
-          onClick={toggleInput}
-        />
-        <button onClick={revertTexture}>rev</button>
-      </div>
-
-      <input
-        id="input-oc"
-        style={{ display: "none" }}
-        type="file"
-        accept="images/*"
-        onChange={handleFile}
-      />
+      <TextureSelector id='t4' title="Occlusion Texture" fileHandler={fileHandler} revertTexture={revertTexture} actualTexture={actualTexture}/>
     </div>
-  )
+  );
 }
 
 export default Occlusion;

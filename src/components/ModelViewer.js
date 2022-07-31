@@ -35,8 +35,8 @@ function ModelViewer() {
 
   return (
     <div className={styles.container}>
-      {!src ?  (
-        <div styles={{width: '100%'}}>
+      {!src ? (
+        <div className={styles.subContainer}>
           <input
             ref={inputRef}
             type="file"
@@ -44,20 +44,25 @@ function ModelViewer() {
             onChange={handleFile}
             style={{ display: "none" }}
           />
-          <button className={styles.buttonUpload} onClick={handleBtnUpload}>Upload</button>
+          <button className={styles.btn} onClick={handleBtnUpload}>
+            Upload
+          </button>
           <p className={styles.paragraph}>or</p>
-          <button className={styles.buttonStart} onClick={() => setSrc(glb)}>start</button>
+          <button className={styles.btn} onClick={() => setSrc(glb)}>
+            start
+          </button>
         </div>
-      ) : <model-viewer
-      id="mv"
-      alt="model viewer with fast 3d editor"
-      src={src}
-      camera-controls
-      exposure={exposure}
-      shadow-intensity={shadowIntensity}
-      shadow-softness={shadowSoftness}
-    ></model-viewer>}
-      
+      ) : (
+        <model-viewer
+          id="mv"
+          alt="model viewer with fast 3d editor"
+          src={src}
+          camera-controls
+          exposure={exposure}
+          shadow-intensity={shadowIntensity}
+          shadow-softness={shadowSoftness}
+        ></model-viewer>
+      )}
     </div>
   );
 }

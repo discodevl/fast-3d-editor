@@ -1,0 +1,24 @@
+.container {
+  margin-top: 10px;
+}
+
+.subContainer {
+  display: flex;
+  align-items: center;
+}
+
+.revert{
+  height: 50%;
+}
+
+.img {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  border: 1px solid black;
+  margin-right: 8px;
+}
+
+.img:hover{
+  border-color: white;
+}

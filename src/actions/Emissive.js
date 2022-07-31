@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { HexColorPicker, HexColorInput } from "react-colorful";
-import NotImg from "../assets/alert-triangle.svg";
 import styles from "./Emissive.module.css";
+import TextureSelector from "../components/TextureSelector";
 
 function Emissive() {
   
@@ -17,11 +17,8 @@ function Emissive() {
 
   const material = modelViewer.model.materials[materialIndex];
 
-  function toggleInput() {
-    document.getElementById("input-em").click();
-  }
 
-  async function handleFile(e) {
+  async function fileHandler(e) {
     const material = modelViewer.model.materials[materialIndex];
 
     const newTexture = e.target.files[0];
@@ -97,23 +94,7 @@ function Emissive() {
 
   return (
     <div>
-      <label>Emissive Texture</label>
-      <div>
-        <img
-          className={styles.img}
-          src={actualTexture || NotImg}
-          onClick={toggleInput}
-        />
-        <button onClick={revertTexture}>rev</button>
-      </div>
-
-      <input
-        id="input-em"
-        style={{ display: "none" }}
-        type="file"
-        accept="images/*"
-        onChange={handleFile}
-      />
+      <TextureSelector id='t3' title="Emissive Texture" fileHandler={fileHandler} revertTexture={revertTexture} actualTexture={actualTexture}/>
 
       <label>Emissive Factor</label>
       <button onClick={() => setOpenColor(!openColor)}>Toggle color</button>

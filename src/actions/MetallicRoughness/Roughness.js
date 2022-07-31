@@ -48,22 +48,21 @@ function Roughness() {
   return (
     <div className={styles.container}>
       <label>Roughness</label>
-      <div>
-        <input
-          id="range-roughness"
-          type="range"
-          max="1.5"
-          min="-1.5"
-          step="0.1"
-          onChange={roughnessHandler}
-        />
-        <img
-          className={styles.rev}
-          alt="revert roughness"
-          src={revert}
-          onClick={revertValue}
-        />
-      </div>
+      <input
+        className={styles.slider}
+        id="range-roughness"
+        type="range"
+        max="1.5"
+        min="-1.5"
+        step="0.1"
+        onChange={roughnessHandler}
+      />
+      <img
+        className={styles.rev}
+        alt="revert roughness"
+        src={revert}
+        onClick={revertValue}
+      />
     </div>
   );
 }

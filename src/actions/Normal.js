@@ -1,7 +1,6 @@
 import React,{useState, useEffect} from "react";
 import { useSelector } from "react-redux";
-import NotImg from "../assets/alert-triangle.svg";
-import styles from "./Normal.module.css";
+import TextureSelector from "../components/TextureSelector";
 
 function Normal() {
   const modelViewer = document.querySelector("model-viewer");
@@ -12,11 +11,7 @@ function Normal() {
 
   const material = modelViewer.model.materials[materialIndex];
 
-  function toggleInput() {
-    document.getElementById("input-nm").click();
-  }
-
-  async function handleFile(e) {
+  async function fileHandler(e) {
     const material = modelViewer.model.materials[materialIndex];
 
     const newTexture = e.target.files[0];
@@ -53,23 +48,7 @@ function Normal() {
 
   return (
     <div>
-      <label>Normal Texture</label>
-      <div>
-        <img
-          className={styles.img}
-          src={actualTexture || NotImg}
-          onClick={toggleInput}
-        />
-        <button onClick={revertTexture}>rev</button>
-      </div>
-
-      <input
-        id="input-nm"
-        style={{ display: "none" }}
-        type="file"
-        accept="images/*"
-        onChange={handleFile}
-      />
+      <TextureSelector id='t5' title="Normal Texture" fileHandler={fileHandler} revertTexture={revertTexture} actualTexture={actualTexture}/>
     </div>
   );
 }

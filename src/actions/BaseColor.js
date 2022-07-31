@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { HexColorPicker, HexColorInput } from "react-colorful";
-import NotImg from "../assets/alert-triangle.svg";
 import styles from "./BaseColor.module.css";
+import TextureSelector from "../components/TextureSelector";
 
 function BaseColor() {
   const modelViewer = document.querySelector("model-viewer");
@@ -16,11 +16,7 @@ function BaseColor() {
 
   const material = modelViewer.model.materials[materialIndex];
 
-  function toggleInput() {
-    document.getElementById("input-bc").click();
-  }
-
-  async function handleFile(e) {
+  async function fileHandler(e) {
     const material = modelViewer.model.materials[materialIndex];
 
     const newTexture = e.target.files[0];
@@ -117,19 +113,7 @@ function BaseColor() {
 
   return (
     <div>
-      <label>Base Color Texture</label>
-      <div>
-        <img className={styles.img} src={actualTexture || NotImg} onClick={toggleInput} />
-        <button onClick={revertTexture}>rev</button>
-      </div>
-
-      <input
-        id="input-bc"
-        style={{ display: "none" }}
-        type="file"
-        accept="images/*"
-        onChange={handleFile}
-      />
+      <TextureSelector id="t2" title="Base Color Texture" fileHandler={fileHandler} revertTexture={revertTexture} actualTexture={actualTexture}/>
 
       <label>Base Color Factor</label>
       <button onClick={() => setOpenColor(!openColor)}>Toggle color</button>

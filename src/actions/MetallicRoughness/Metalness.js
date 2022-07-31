@@ -19,7 +19,9 @@ function Metalness() {
 
   function revertValue() {
     document.getElementById("range-metal").value = defaultValue[materialIndex];
-    materialSelected.pbrMetallicRoughness.setMetallicFactor(defaultValue[materialIndex]);
+    materialSelected.pbrMetallicRoughness.setMetallicFactor(
+      defaultValue[materialIndex]
+    );
   }
 
   useEffect(() => {
@@ -32,7 +34,6 @@ function Metalness() {
   }, []);
 
   useEffect(() => {
-
     const listDefault = [...defaultValue];
     document.getElementById("range-metal").value =
       materialSelected.pbrMetallicRoughness.metallicFactor;
@@ -46,22 +47,21 @@ function Metalness() {
   return (
     <div className={styles.container}>
       <label>Metalness</label>
-      <div>
-        <input
-          id="range-metal"
-          type="range"
-          max="1.5"
-          min="-1.5"
-          step="0.1"
-          onChange={metalnessHandler}
-        />
-        <img
-          className={styles.rev}
-          alt="revert metalness"
-          src={revert}
-          onClick={revertValue}
-        />
-      </div>
+      <input
+        className={styles.slider}
+        id="range-metal"
+        type="range"
+        max="1.5"
+        min="-1.5"
+        step="0.1"
+        onChange={metalnessHandler}
+      />
+      <img
+        className={styles.rev}
+        alt="revert metalness"
+        src={revert}
+        onClick={revertValue}
+      />
     </div>
   );
 }
