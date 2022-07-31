@@ -24,7 +24,7 @@ function Luminosity() {
 
 
   return (
-    <div>
+    <div className={styles.container}>
       <div>
         <label>Exposure</label>
         <input type="range" min={0} max={2} step={0.1} value={exposure} onChange={exposureHandler}/>

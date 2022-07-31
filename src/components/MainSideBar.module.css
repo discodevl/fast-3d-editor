@@ -8,7 +8,6 @@
 
 .ico {
   margin: 15px;
-  /* width: 40px; */
   filter: grayscale(0%) opacity(1);
   transition: 500ms;
 }
@@ -17,19 +16,9 @@
   filter: grayscale(100%) opacity(0.5);
 }
 
-
-:root {
-    --bg-primary: #23232e;
-    --bg-secondary: #141418;
-    --transition-speed: 600ms;
-  }
-
 .navbar {
-  /* position: fixed; */
   background-color: #23232e;
   transition: width 600ms ease;
-  
-  /* overflow: scroll; */
 }
 
 .navbar-nav {
@@ -44,6 +33,10 @@
 
 .nav-item {
   width: 100%;
+}
+
+.nav-item:last-child{
+  margin-top: auto;
 }
 
 .nav-link {
@@ -68,15 +61,10 @@
   margin: 0 1.5rem;
 }
 
-.fa-primary {
-  color: #ff7eee;
-}
-
 .fa-secondary {
   color: #df49a6;
 }
 
-.fa-primary,
 .fa-secondary {
   transition: 400ms;
 }

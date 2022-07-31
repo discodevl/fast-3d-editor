@@ -73,7 +73,7 @@ function BaseColor() {
 
     const rgba = material.pbrMetallicRoughness.baseColorFactor;
     const hex = rgbToHex(rgba[0], rgba[1], rgba[2]);
-    console.log(hex);
+    // console.log(hex);
     setColor(hex);
     setDefaultColor(rgba);
     getThumb();

@@ -1,0 +1,45 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.row {
+  display: flex;
+}
+
+.colorWrap {
+  width: 20px;
+  height: 20px;
+  border: 1px solid black;
+  margin: 4px;
+}
+
+.colorWrap:hover {
+  border: 1px solid white;
+}
+
+.title {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.colorPickerContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.btn {
+  margin-top: 20px;
+  margin-bottom: 15px;
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 8px;
+  border-radius: 8px;
+  border: 0;
+}

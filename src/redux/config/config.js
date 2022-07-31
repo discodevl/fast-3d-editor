@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   hide_side_bar: false,
-  background_color: '#ffff',
+  background_color: 'rgb(180, 180, 180)',
 };
 
 const config = createSlice({

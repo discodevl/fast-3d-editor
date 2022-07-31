@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import glb from "../assets/alpha-blend-litmus.glb";
 import styles from "./ModelViewer.module.css";
 
-function ModelViewer() {
+function ModelViewer({isModelLoaded}) {
   const inputRef = useRef();
 
   const [src, setSrc] = useState("");
@@ -26,15 +26,15 @@ function ModelViewer() {
   }
 
   useEffect(() => {
-    if (hideSideBar) {
-      // document.getElementById("mv").style.width = "94vw";
-    } else {
-      // document.getElementById("mv").style.width = "76vw";
+    if(src) {
+      isModelLoaded(true);
+    } else{
+      isModelLoaded(false);
     }
-  }, [hideSideBar]);
+  }, [src]);
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} style={{backgroundColor: bgColor}}>
       {!src ? (
         <div className={styles.subContainer}>
           <input
