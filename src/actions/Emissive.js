@@ -52,7 +52,6 @@ function Emissive() {
       defaultColor[2],
       defaultColor[1]
       );
-      console.log(defaultColor)
       setColor(defaultColorHex);
       material.setEmissiveFactor(defaultColor);
   }

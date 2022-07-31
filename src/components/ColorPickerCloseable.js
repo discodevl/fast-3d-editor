@@ -3,7 +3,7 @@ import ColorPicker from './ColorPicker';
 import styles from './ColorPickerCloseable.module.css';
 
 function ColorPickerCloseable({title, onSelectColor, revertColor}) {
-    const [toggle, setToggle] = useState(false);
+    const [toggle, setToggle] = useState(true);
 
     function toggleHandler() {
         setToggle(toggle => !toggle);
