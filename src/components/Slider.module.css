@@ -1,0 +1,35 @@
+.container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.sliderContainer{
+    display: flex;
+    align-items: center;
+    font-size: small;
+}
+
+.sliderContainer input{
+    -webkit-appearance: none;
+    height: 3px;
+    background: #ddd;
+    border-radius: 8px;
+    outline: none;
+    border: none;
+}
+
+.sliderContainer input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 20px;
+    width: 20px;
+    border-radius: 12px;
+    background: #df49a6;
+    border: 1px solid #8e2d69;
+    cursor: pointer;
+}
+
+.title {
+  margin-right: 12px;
+}
+

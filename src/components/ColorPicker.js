@@ -3,7 +3,7 @@ import { HexColorPicker, HexColorInput } from "react-colorful";
 import styles from "./ColorPicker.module.css";
 
 //colors must be hex
-const PALLETE_PRIMARY = [
+const COLORS_PRIMARY = [
   "#ffffff",
   "#FF9999",
   "#99FF99",
@@ -12,7 +12,7 @@ const PALLETE_PRIMARY = [
   "#FFFF99",
   "#FFCC99",
 ];
-const PALLETE_SECONDARY = [
+const COLORS_SECONDARY = [
   "#b4b4b4",
   "#FF3333",
   "#33FF33",
@@ -21,7 +21,7 @@ const PALLETE_SECONDARY = [
   "#FFFF33",
   "#FF9933",
 ];
-const PALLETE_TERTIARY = [
+const COLORS_TERTIARY = [
   "#202020",
   "#CC0000",
   "#00CC00",
@@ -48,7 +48,7 @@ function ColorPicker({ title, onSelectColor }) {
     <div className={styles.container}>
       <span className={styles.title}>{title}</span>
       <div className={styles.row}>
-        {PALLETE_PRIMARY.map((color, i) => (
+        {COLORS_PRIMARY.map((color, i) => (
           <div
             key={i}
             className={styles.colorWrap}
@@ -58,7 +58,7 @@ function ColorPicker({ title, onSelectColor }) {
         ))}
       </div>
       <div className={styles.row}>
-        {PALLETE_SECONDARY.map((color, i) => (
+        {COLORS_SECONDARY.map((color, i) => (
           <div
             key={i}
             className={styles.colorWrap}
@@ -68,7 +68,7 @@ function ColorPicker({ title, onSelectColor }) {
         ))}
       </div>
       <div className={styles.row}>
-        {PALLETE_TERTIARY.map((color, i) => (
+        {COLORS_TERTIARY.map((color, i) => (
           <div
             key={i}
             className={styles.colorWrap}

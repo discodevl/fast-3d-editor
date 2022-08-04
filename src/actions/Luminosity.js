@@ -1,5 +1,6 @@
 import React,{useEffect, useState} from "react";
 import {useSelector, useDispatch} from 'react-redux';
+import Slider from "../components/Slider";
 import {modelActions} from "../redux/model/model";
 import styles from "./Luminosity.module.css";
 
@@ -37,6 +38,7 @@ function Luminosity() {
         <label>Shadow Softness</label>
         <input type="range" min={0} max={1} step={0.1} value={shadowSoftness} onChange={shadowSoftnessHandler}/>
       </div>
+      <Slider title="Shadow Softness" min={0} max={1} step={0.1} value={shadowSoftness} onChange={shadowSoftnessHandler}/>
     </div>
   );
 }
