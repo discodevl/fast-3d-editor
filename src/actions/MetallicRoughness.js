@@ -3,6 +3,7 @@ import Metalness from "./MetallicRoughness/Metalness";
 import Roughness from "./MetallicRoughness/Roughness";
 import { useSelector } from "react-redux";
 import TextureSelector from "../components/TextureSelector";
+import styles from './MetallicRoughness.module.css';
 
 function MetallicRoughness() {
   const [initialTexture, setInitialTexture] = useState();
@@ -12,7 +13,6 @@ function MetallicRoughness() {
   const materialIndex = useSelector((state) => state.model.material_index);
 
   const material = modelViewer.model.materials[materialIndex];
-
 
   async function fileHandler(e) {
     // const material = modelViewer.model.materials[materialIndex];
@@ -36,7 +36,6 @@ function MetallicRoughness() {
 
   useEffect(() => {
     async function getThumb() {
-      
       const thumb =
         await material?.pbrMetallicRoughness?.metallicRoughnessTexture?.texture?.source?.createThumbnail(
           48,
@@ -51,11 +50,17 @@ function MetallicRoughness() {
   }, [materialIndex]);
 
   return (
-    <>
-    <TextureSelector id='t1' title="Metallic Roughness Texture" fileHandler={fileHandler} revertTexture={revertTexture} actualTexture={actualTexture}/>
+    <div className={styles.container}>
+      <TextureSelector
+        id="t1"
+        title="Metallic Roughness Texture"
+        fileHandler={fileHandler}
+        revertTexture={revertTexture}
+        actualTexture={actualTexture}
+      />
       <Metalness />
       <Roughness />
-      </>
+    </div>
   );
 }
 

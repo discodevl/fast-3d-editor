@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import revert from "../../assets/x-circle.svg";
+import SvgBack from "../../components/SvgBack";
 import Slider from "../../components/Slider";
 import styles from "./MetallicRoughness.module.css";
 
@@ -50,23 +50,24 @@ function Metalness() {
 
   return (
     <div className={styles.container}>
-      <Slider id="range-metal" title="Metalness" value={metalValue} min={-1.5} max={1.5} step={0.1} onChange={metalnessHandler}/>
-      {/* <label>Metalness</label>
-      <input
-        className={styles.slider}
+      <Slider
         id="range-metal"
-        type="range"
-        max="1.5"
-        min="-1.5"
-        step="0.1"
+        title="Metalness"
+        value={metalValue}
+        min={-1.5}
+        max={1.5}
+        step={0.1}
         onChange={metalnessHandler}
-      /> */}
-      <img
+      />
+      <div className={styles.rev} onClick={revertValue}>
+        <SvgBack />
+      </div>
+      {/* <img
         className={styles.rev}
         alt="revert metalness"
         src={revert}
         onClick={revertValue}
-      />
+      /> */}
     </div>
   );
 }

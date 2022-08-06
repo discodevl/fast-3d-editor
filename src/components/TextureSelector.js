@@ -1,6 +1,8 @@
 import React from "react";
 import NotImg from "../assets/alert-triangle.svg";
+import SvgBack from './SvgBack';
 import styles from "./TextureSelector.module.css";
+
 
 function TextureSelector({ id, title, fileHandler, revertTexture, actualTexture }) {
   
@@ -17,7 +19,11 @@ function TextureSelector({ id, title, fileHandler, revertTexture, actualTexture 
           src={actualTexture || NotImg}
           onClick={toggleInput}
         />
-        <button className={styles.revert} onClick={revertTexture}>rev</button>
+        <div className={styles.revert} onClick={revertTexture}>
+        <SvgBack />
+
+        </div>
+        {/* <button className={styles.revert} onClick={revertTexture}>rev</button> */}
       </div>
 
       

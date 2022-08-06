@@ -1,5 +1,8 @@
 .container {
-  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  border-radius: 8px;
 }
 
 .img {
