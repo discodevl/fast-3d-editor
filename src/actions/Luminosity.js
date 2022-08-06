@@ -19,8 +19,8 @@ function Luminosity() {
     dispatch(modelActions.setShadowIntensity(e.target.value));
   }
 
-  function shadowSoftnessHandler(e) {
-    dispatch(modelActions.setShadowSoftness(e.target.value));
+  function shadowSoftnessHandler(x) {
+    dispatch(modelActions.setShadowSoftness(x));
   }
 
 
