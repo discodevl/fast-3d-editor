@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import revert from "../../assets/x-circle.svg";
+import Slider from "../../components/Slider";
 import styles from "./MetallicRoughness.module.css";
 
 function Roughness() {
@@ -10,11 +11,13 @@ function Roughness() {
   const materialSelected = modelViewer.model.materials[materialIndex];
 
   const roughness = useSelector((state) => state.model.roughness);
+  const [roughnessValue, setRoughnessValue] = useState();
 
   const [defaultValue, setDefaultValue] = useState([]);
 
-  function roughnessHandler(e) {
-    materialSelected.pbrMetallicRoughness.setRoughnessFactor(e.target.value);
+  function roughnessHandler(value) {
+    materialSelected.pbrMetallicRoughness.setRoughnessFactor(value);
+    setRoughnessValue(value);
   }
 
   function revertValue() {
@@ -23,6 +26,7 @@ function Roughness() {
     materialSelected.pbrMetallicRoughness.setRoughnessFactor(
       defaultValue[materialIndex]
     );
+    setRoughnessValue(defaultValue[materialIndex]);
   }
 
   useEffect(() => {
@@ -47,7 +51,7 @@ function Roughness() {
 
   return (
     <div className={styles.container}>
-      <label>Roughness</label>
+      {/* <label>Roughness</label>
       <input
         className={styles.slider}
         id="range-roughness"
@@ -56,7 +60,8 @@ function Roughness() {
         min="-1.5"
         step="0.1"
         onChange={roughnessHandler}
-      />
+      /> */}
+      <Slider id="range-roughness" title="Roughness" min={-1.5} max={1.5} step={0.1} value={roughnessValue} onChange={roughnessHandler} />
       <img
         className={styles.rev}
         alt="revert roughness"

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import revert from "../../assets/x-circle.svg";
+import Slider from "../../components/Slider";
 import styles from "./MetallicRoughness.module.css";
 
 function Metalness() {
@@ -10,11 +11,13 @@ function Metalness() {
   const materialSelected = modelViewer.model.materials[materialIndex];
 
   const metalness = useSelector((state) => state.model.metalness);
+  const [metalValue, setMetalValue] = useState();
 
   const [defaultValue, setDefaultValue] = useState([]);
 
-  function metalnessHandler(e) {
-    materialSelected.pbrMetallicRoughness.setMetallicFactor(e.target.value);
+  function metalnessHandler(value) {
+    materialSelected.pbrMetallicRoughness.setMetallicFactor(value);
+    setMetalValue(value);
   }
 
   function revertValue() {
@@ -22,6 +25,7 @@ function Metalness() {
     materialSelected.pbrMetallicRoughness.setMetallicFactor(
       defaultValue[materialIndex]
     );
+    setMetalValue(defaultValue[materialIndex]);
   }
 
   useEffect(() => {
@@ -46,7 +50,8 @@ function Metalness() {
 
   return (
     <div className={styles.container}>
-      <label>Metalness</label>
+      <Slider id="range-metal" title="Metalness" value={metalValue} min={-1.5} max={1.5} step={0.1} onChange={metalnessHandler}/>
+      {/* <label>Metalness</label>
       <input
         className={styles.slider}
         id="range-metal"
@@ -55,7 +60,7 @@ function Metalness() {
         min="-1.5"
         step="0.1"
         onChange={metalnessHandler}
-      />
+      /> */}
       <img
         className={styles.rev}
         alt="revert metalness"
