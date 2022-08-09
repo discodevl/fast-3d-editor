@@ -30,11 +30,12 @@ function Metalness() {
 
   useEffect(() => {
     const listDefault = [];
-    document.getElementById("range-metal").value =
-      materialSelected.pbrMetallicRoughness.metallicFactor;
+    // document.getElementById("range-metal").value =
+      // materialSelected.pbrMetallicRoughness.metallicFactor;
     listDefault[materialIndex] =
       materialSelected.pbrMetallicRoughness.metallicFactor;
     setDefaultValue([...listDefault]);
+    setMetalValue(materialSelected.pbrMetallicRoughness.metallicFactor);
   }, []);
 
   useEffect(() => {

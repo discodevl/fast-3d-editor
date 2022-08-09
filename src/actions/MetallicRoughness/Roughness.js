@@ -31,11 +31,12 @@ function Roughness() {
 
   useEffect(() => {
     const listDefault = [];
-    document.getElementById("range-roughness").value =
-      materialSelected.pbrMetallicRoughness.roughnessFactor;
+    // document.getElementById("range-roughness").value =
+    //   materialSelected.pbrMetallicRoughness.roughnessFactor;
     listDefault[materialIndex] =
       materialSelected.pbrMetallicRoughness.roughnessFactor;
     setDefaultValue([...listDefault]);
+    setRoughnessValue(materialSelected.pbrMetallicRoughness.roughnessFactor);
   }, []);
 
   useEffect(() => {
