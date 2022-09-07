@@ -5,7 +5,7 @@ import Emissive from "./Emissive";
 import MetallicRoughness from "./MetallicRoughness";
 import Normal from "./Normal";
 import Occlusion from "./Occlusion";
-import styles from './TextureSelector.module.css';
+import styles from "./TextureSelector.module.css";
 
 function TextureSelector() {
   const dispatch = useDispatch();
@@ -21,9 +21,14 @@ function TextureSelector() {
   return (
     <div className={styles.container}>
       <span className={styles.title}>Select material</span>
-      <select className={styles.select} onChange={materialHandler}>   
+      <select className={styles.select} onChange={materialHandler}>
         {materials.map((mat, i) => {
-          return <option key={i} value={i}>{mat.name}</option>;
+          if (materials[i-1]?.name === mat.name) return;
+          return (
+            <option key={i} value={i}>
+              {mat.name}
+            </option>
+          );
         })}
       </select>
       <MetallicRoughness />

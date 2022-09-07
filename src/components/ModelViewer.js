@@ -1,16 +1,17 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {modelActions} from '../redux/model/model';
 import glb from "../assets/alpha-blend-litmus.glb";
 import styles from "./ModelViewer.module.css";
 
 function ModelViewer({isModelLoaded}) {
   const inputRef = useRef();
-
-  const [src, setSrc] = useState("");
+  const dispatch = useDispatch();
 
   const exposure = useSelector((state) => state.model.exposure);
   const shadowIntensity = useSelector((state) => state.model.shadow_intensity);
   const shadowSoftness = useSelector((state) => state.model.shadow_softness);
+  const src = useSelector((state) => state.model.src);
 
   const bgColor = useSelector((state) => state.config.background_color);
 
@@ -21,7 +22,12 @@ function ModelViewer({isModelLoaded}) {
 
   function handleFile(e) {
     const modelUpload = e.target.files[0];
-    setSrc(URL.createObjectURL(modelUpload));
+    const src = URL.createObjectURL(modelUpload)
+    dispatch(modelActions.setSrc(src));
+  }
+
+  function setDemoGlb() {
+    dispatch(modelActions.setSrc(glb));
   }
 
   useEffect(() => {
@@ -47,7 +53,7 @@ function ModelViewer({isModelLoaded}) {
             Upload
           </button>
           <p className={styles.paragraph}>or</p>
-          <button className={styles.btn} onClick={() => setSrc(glb)}>
+          <button className={styles.btn} onClick={setDemoGlb}>
             start
           </button>
         </div>

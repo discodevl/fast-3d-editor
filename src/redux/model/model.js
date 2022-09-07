@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  src: '',
   exposure: 1,
   shadow_intensity: 0,
   shadow_softness: 1,
@@ -13,6 +14,9 @@ const model = createSlice({
   name: "model",
   initialState,
   reducers: {
+    setSrc(state,action) {
+      state.src = action.payload;
+    },
     setExposure(state, action) {
       state.exposure = action.payload;
     },

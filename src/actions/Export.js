@@ -1,7 +1,10 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { modelActions } from "../redux/model/model";
 import styles from './Export.module.css';
 
 function Export() {
+  const dispatch = useDispatch();
   let modelViewer = document.querySelector("model-viewer");
 
   async function saveHandler() {
@@ -18,6 +21,7 @@ function Export() {
     //to fix
     const mv = document.querySelector('model-viewer');
     mv.src = "";
+    dispatch(modelActions.setSrc(''));
   }
 
   return (

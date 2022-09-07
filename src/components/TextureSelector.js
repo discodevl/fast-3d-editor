@@ -31,7 +31,7 @@ function TextureSelector({ id, title, fileHandler, revertTexture, actualTexture 
         id={id}
         style={{ display: "none" }}
         type="file"
-        accept="images/*"
+        accept="image/png, image/gif, image/jpeg,image/jpg"
         onChange={fileHandler}
       />
     </div>
