@@ -83,7 +83,7 @@ function AmountPicker({ onAmountChange }) {
 
 console.log();
 
-export function DonateApp() {
+export function Donate() {
   return (
     <PayPalScriptProvider
       options={{
