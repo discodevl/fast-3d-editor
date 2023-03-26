@@ -1,7 +1,7 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {modelActions} from '../redux/model/model';
-import glb from "../assets/alpha-blend-litmus.glb";
+import glb from "../assets/Astronaut.glb";
 import styles from "./ModelViewer.module.css";
 
 function ModelViewer({isModelLoaded}) {
