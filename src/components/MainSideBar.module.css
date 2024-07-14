@@ -63,11 +63,11 @@
 
 .fa-secondary {
   color: #df49a6;
-}
-
-.fa-secondary {
   transition: 400ms;
 }
+
+/* .fa-secondary {
+} */
 
 .logo {
   font-weight: bold;

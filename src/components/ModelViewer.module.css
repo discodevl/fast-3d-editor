@@ -22,3 +22,13 @@
 .btn:hover {
   box-shadow: 2px 2px 8px;
 }
+
+.options{
+  position: fixed;
+  z-index: 10;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+  outline: none;
+  background-color: transparent;
+}
