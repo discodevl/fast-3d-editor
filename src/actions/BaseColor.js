@@ -16,6 +16,8 @@ function BaseColor() {
 
   const material = modelViewer.model.materials[materialIndex];
 
+  console.log(material)
+  
   async function fileHandler(e) {
     const material = modelViewer.model.materials[materialIndex];
 

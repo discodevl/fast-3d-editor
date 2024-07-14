@@ -5,21 +5,21 @@ import SideBar from "./components/SideBar";
 
 function App() {
   const [tab, setTab] = useState(0);
-  const [block, setBlock] = useState(true);
+  // const [block, setBlock] = useState(true);
 
   function tabHandler(tab) {
     setTab(tab);
   }
 
-  function isModelLoaded(model) {
-    setBlock(!model);
-  }
+  // function isModelLoaded(model) {
+  //   setBlock(!model);
+  // }
 
   return (
     <div className="container-main">
-      <MainSideBar block={block} onChangeTab={tabHandler}/>
+      <MainSideBar  onChangeTab={tabHandler}/>
       <SideBar tab={tab}/>
-      <ModelViewer isModelLoaded={isModelLoaded}/>
+      <ModelViewer />
     </div>
   );
 }

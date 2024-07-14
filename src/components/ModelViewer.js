@@ -5,7 +5,7 @@ import glb from "../assets/Astronaut.glb";
 import styles from "./ModelViewer.module.css";
 import { Tooltip } from "react-tooltip";
 
-function ModelViewer({ isModelLoaded }) {
+function ModelViewer() {
   const inputRef = useRef();
   const dispatch = useDispatch();
 
@@ -45,14 +45,24 @@ function ModelViewer({ isModelLoaded }) {
         onChange={handleFile}
         style={{ display: "none" }}
       />
-      <button
+      <div
         className={styles.options}
         data-tooltip-id="glb_tooltip"
-        data-tooltip-content="Upload you own .glb"
+        data-tooltip-content="Upload you own .glb file"
         onClick={handleBtnUpload}
       >
-        upd_ico
-      </button>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          className="bi bi-download"
+          viewBox="0 0 16 16"
+        >
+          <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5" />
+          <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z" />
+        </svg>
+      </div>
       <Tooltip id="glb_tooltip" />
       <div className={styles.container} style={{ backgroundColor: bgColor }}>
         <model-viewer

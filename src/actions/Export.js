@@ -26,7 +26,7 @@ function Export() {
 
   return (
     <div className={styles.container}>
-      <button className={styles.btn} onClick={discardHandler}>Discard Model</button>
+      {/* <button className={styles.btn} onClick={discardHandler}>Discard Model</button> */}
 
       <button className={styles.btn} onClick={saveHandler}>Export</button>
     </div>
