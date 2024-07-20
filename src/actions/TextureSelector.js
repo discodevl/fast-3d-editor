@@ -20,6 +20,9 @@ function TextureSelector() {
 
   return (
     <div className={styles.container}>
+      <div className={styles.titleWrap}>
+        <span className={styles.titleMain}>Textures</span>
+      </div>
       <span className={styles.title}>Select material</span>
       <select className={styles.select} onChange={materialHandler}>
         {materials.map((mat, i) => {

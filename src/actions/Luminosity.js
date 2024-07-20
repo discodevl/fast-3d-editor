@@ -26,8 +26,12 @@ function Luminosity() {
 
   return (
     <div className={styles.container}>
+      <div className={styles.titleWrap}>
+      <span className={styles.title}>Lightining</span>
+      </div>
       <Slider title="Exposure" min={0} max={2} step={0.1} value={exposure} onChange={exposureHandler}/>
       {/* SHADOW */}
+      <span>Shadow</span>
       <Slider title="Intensity" min={0} max={1} step={0.1} value={shadowIntensity} onChange={shadowIntensityHandler}/>
       <Slider title="Softness" min={0} max={1} step={0.1} value={shadowSoftness} onChange={shadowSoftnessHandler}/>
 
