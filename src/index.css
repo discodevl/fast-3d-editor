@@ -23,3 +23,10 @@ model-viewer {
   width: 100vw;
   height: 100vh;
 }
+
+.DonateForm{
+display: flex;
+flex-direction: column;
+gap: 1rem;
+margin-top: 1rem;
+}

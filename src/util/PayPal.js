@@ -1,57 +1,60 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
 const DonateButton = ({ currency, amount }) => {
+  const [successMsg, setSuccessMsg] = useState("");
   const amountRef = useRef(amount);
 
   useEffect(() => {
     amountRef.current = amount;
   }, [amount]);
+  async function handleApprove(data, actions) {
+    const capture = await actions.order.capture();
+    if (capture.payer.name.given_name) {
+      setSuccessMsg(
+        `Thanks ${capture.payer.name.given_name}! Your donation has been made`
+      );
+    }
+  }
 
   return (
-    <PayPalButtons
-      //   forceReRender={[currency, amount]}
-      style={{ color: "black", label: "donate" }}
-      fundingSource="paypal"
-      createOrder={(data, actions) => {
-        return actions.order.create({
-          purchase_units: [
-            {
-              amount: {
-                value: amountRef.current,
-                breakdown: {
-                  item_total: {
-                    currency_code: currency,
-                    value: amountRef.current,
-                  },
+    <>
+      {successMsg ? <span>{successMsg}</span> : <PayPalButtons
+        style={{
+          layout: "horizontal",
+          color: "blue",
+          shape: "pill",
+          label: "pay",
+        }}
+        createOrder={(data, actions) => {
+          return actions.order.create({
+            intent: "CAPTURE",
+            purchase_units: [
+              {
+                amount: {
+                  currency_code: currency, // Specify the currency
+                  value: amountRef.current, // Specify the amount
                 },
               },
-              items: [
-                {
-                  name: "Fast 3d Editor",
-                  description:
-                    "Help the 'fast 3d editor' project with a small amount.",
-                  quantity: "1",
-                  unit_amount: {
-                    currency_code: currency,
-                    value: amountRef.current,
-                  },
-                  category: "DONATION",
-                },
-              ],
-            },
-          ],
-        });
-      }}
-    />
+            ],
+          });
+        }}
+        onApprove={handleApprove}
+        onError={(err) => {
+          console.error("PayPal Checkout Error", err);
+        }}
+      />}
+    </>
   );
 };
 
 function DonateForm() {
-  const [amount, setAmount] = useState("3.00");
+  const initialAmount = "0.10" 
+  const [amount, setAmount] = useState(initialAmount);
   return (
     <form className="DonateForm">
       <AmountPicker
+      initialAmount={initialAmount}
         onAmountChange={(e) => {
           setAmount(e.target.value);
         }}
@@ -61,27 +64,25 @@ function DonateForm() {
   );
 }
 
-function AmountPicker({ onAmountChange }) {
+function AmountPicker({ onAmountChange, initialAmount }) {
   return (
     <fieldset onChange={onAmountChange}>
       <legend>Donation Amount</legend>
       <label>
-        <input type="radio" value="3.00" defaultChecked="true" name="amount" />
-        3.00
+        <input type="radio" value={initialAmount} defaultChecked="true" name="amount" />
+        0.10
       </label>
       <label>
-        <input type="radio" value="5.00" name="amount" id="radio-6" />
-        5.00
+        <input type="radio" value="4.00" name="amount" id="radio-6" />
+        4.00
       </label>
       <label>
-        <input type="radio" value="10.00" name="amount" id="radio-9" />
-        10.00
+        <input type="radio" value="8.00" name="amount" id="radio-9" />
+        8.00
       </label>
     </fieldset>
   );
 }
-
-console.log();
 
 export function Donate() {
   return (

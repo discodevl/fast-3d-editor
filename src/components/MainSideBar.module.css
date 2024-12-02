@@ -35,7 +35,7 @@
   width: 100%;
 }
 
-.nav-item:last-child{
+.nav-item:last-child {
   margin-top: auto;
 }
 
@@ -92,4 +92,8 @@
 
 .navbar:hover .logo svg {
   transform: rotate(-180deg);
+}
+
+.cursor{
+  cursor: pointer;
 }

@@ -18,8 +18,8 @@ function Doc() {
         then the save icon when you can save your modified model or discard the
         current model.
       </p>
-      {/* <span>Did you enjoy fast 3d editor? Co<nsider donate a small amount to help the project: </span>> */}
-      {/* <Donate /> */}
+      <span>Did you enjoy fast 3d editor? Consider donate a small amount to help the project: </span>
+      <Donate />
     </div>
   );
 }

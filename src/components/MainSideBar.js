@@ -22,6 +22,7 @@ function MainSideBar({ onChangeTab, block }) {
               onClick={() => toggleSideBar(1)}
             >
               <svg
+              className={styles.cursor}
                 aria-hidden="true"
                 focusable="false"
                 data-prefix="fad"
@@ -48,6 +49,7 @@ function MainSideBar({ onChangeTab, block }) {
               onClick={() => toggleSideBar(2)}
             >
               <svg
+              className={styles.cursor}
                 aria-hidden="true"
                 focusable="false"
                 data-prefix="fad"
@@ -74,6 +76,7 @@ function MainSideBar({ onChangeTab, block }) {
               onClick={() => toggleSideBar(3)}
             >
               <svg
+              className={styles.cursor}
                 aria-hidden="true"
                 focusable="false"
                 data-prefix="fad"
@@ -100,6 +103,7 @@ function MainSideBar({ onChangeTab, block }) {
               onClick={() => toggleSideBar(4)}
             >
               <svg
+              className={styles.cursor}
                 aria-hidden="true"
                 focusable="false"
                 data-prefix="fad"
@@ -125,6 +129,7 @@ function MainSideBar({ onChangeTab, block }) {
               onClick={() => toggleSideBar(0)}
             >
               <svg
+              className={styles.cursor}
                 aria-hidden="true"
                 focusable="false"
                 data-prefix="fad"
