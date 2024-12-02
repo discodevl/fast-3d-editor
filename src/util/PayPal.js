@@ -19,42 +19,46 @@ const DonateButton = ({ currency, amount }) => {
 
   return (
     <>
-      {successMsg ? <span>{successMsg}</span> : <PayPalButtons
-        style={{
-          layout: "horizontal",
-          color: "blue",
-          shape: "pill",
-          label: "pay",
-        }}
-        createOrder={(data, actions) => {
-          return actions.order.create({
-            intent: "CAPTURE",
-            purchase_units: [
-              {
-                amount: {
-                  currency_code: currency, // Specify the currency
-                  value: amountRef.current, // Specify the amount
+      {successMsg ? (
+        <span>{successMsg}</span>
+      ) : (
+        <PayPalButtons
+          style={{
+            layout: "horizontal",
+            color: "blue",
+            shape: "pill",
+            label: "pay",
+          }}
+          createOrder={(data, actions) => {
+            return actions.order.create({
+              intent: "CAPTURE",
+              purchase_units: [
+                {
+                  amount: {
+                    currency_code: currency, // Specify the currency
+                    value: amountRef.current, // Specify the amount
+                  },
                 },
-              },
-            ],
-          });
-        }}
-        onApprove={handleApprove}
-        onError={(err) => {
-          console.error("PayPal Checkout Error", err);
-        }}
-      />}
+              ],
+            });
+          }}
+          onApprove={handleApprove}
+          onError={(err) => {
+            console.error("PayPal Checkout Error", err);
+          }}
+        />
+      )}
     </>
   );
 };
 
 function DonateForm() {
-  const initialAmount = "0.10" 
+  const initialAmount = "0.10";
   const [amount, setAmount] = useState(initialAmount);
   return (
     <form className="DonateForm">
       <AmountPicker
-      initialAmount={initialAmount}
+        initialAmount={initialAmount}
         onAmountChange={(e) => {
           setAmount(e.target.value);
         }}
@@ -69,7 +73,12 @@ function AmountPicker({ onAmountChange, initialAmount }) {
     <fieldset onChange={onAmountChange}>
       <legend>Donation Amount</legend>
       <label>
-        <input type="radio" value={initialAmount} defaultChecked="true" name="amount" />
+        <input
+          type="radio"
+          value={initialAmount}
+          defaultChecked="true"
+          name="amount"
+        />
         0.10
       </label>
       <label>
